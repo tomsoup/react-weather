@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
+
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,12 +13,17 @@ class SearchBar extends Component {
 
   //All dom event handler are provided by vanllia javascript
   //Not react
+
+
   onInputChange(event) {
     this.setState({ term: event.target.value })
   }
 
   onFormSubmit(event) {
     event.preventDefault();
+
+    this.props.fetchWeather(this.state.term);
+    this.setState({ term: ''});
   }
 
   render() {
@@ -36,5 +45,10 @@ class SearchBar extends Component {
   }
 }
 
+const mapDispatchTopProps = (dispatch) => {
+  console.log(dispatch);
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
 
-export default SearchBar;
+// null skip changes to state
+export default connect(null, mapDispatchTopProps)(SearchBar);
