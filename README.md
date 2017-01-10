@@ -1,4 +1,6 @@
-React weather forecast in ES6
+React weather forecast don using StephenGrider's ReduxSimpleStarter  
+
+
 
 ```
 	> npm install
